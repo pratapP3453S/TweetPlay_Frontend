@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axios.helper.js";
-import Logo from "../Logo";
-import Input from "../Input";
-import Button from "../Button";
+import Logo from "../Logo.jsx";
+import Input from "../Input.jsx";
+import Button from "../Button.jsx";
 import { icons } from "../../assets/Icons.jsx";
 import { toast } from "react-toastify";
 

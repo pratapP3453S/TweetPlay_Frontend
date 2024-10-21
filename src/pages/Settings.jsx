@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import axiosInstance from "../utils/axios.helper";
-import { setUser } from "../store/authSlice";
-import Button from "../components/Button";
-import EditPersonalInfo from "../components/Settings/EditPersonalInfo";
-import EditChannelInfo from "../components/Settings/EditChannelInfo";
-import ChangePassword from "../components/Settings/ChangePassword";
+import axiosInstance from "../utils/axios.helper.js";
+import { setUser } from "../store/authSlice.js";
+import Button from "../components/Button.jsx";
+import EditPersonalInfo from "../components/Settings/EditPersonalInfo.jsx";
+import EditChannelInfo from "../components/Settings/EditChannelInfo.jsx";
+import ChangePassword from "../components/Settings/ChangePassword.jsx";
 import streamify_cover from "../assets/Streamify_Cover.png"
 
 function Settings() {
