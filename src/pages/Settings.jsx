@@ -7,9 +7,9 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import axiosInstance from "../utils/axios.helper.js";
 import { setUser } from "../store/authSlice.js";
 import Button from "../components/Button.jsx";
-import EditPersonalInfo from "../components/Settings/EditPersonalInfo.jsx";
-import EditChannelInfo from "../components/Settings/EditChannelInfo.jsx";
-import ChangePassword from "../components/Settings/ChangePassword.jsx";
+import EditPersonalInfo from "../components/UserSettings/EditPersonalInfo.jsx";
+import EditChannelInfo from "../components/UserSettings/EditChannelInfo.jsx";
+import ChangePassword from "../components/UserSettings/ChangePassword.jsx";
 import streamify_cover from "../assets/Streamify_Cover.png"
 
 function Settings() {
