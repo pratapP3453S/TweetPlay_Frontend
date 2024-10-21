@@ -168,18 +168,19 @@ function Video() {
             const response2 = await axiosInstance.post(`/videos/${videoId}/views/last-ten-days`);
 
         } catch (error) {
-            setError(
-                <GuestComponent
-                    title="Video does not exist"
-                    subtitle="There is no video present for given videoId. It may have been moved or deleted."
-                    icon={
-                        <span className="w-full h-full flex items-center p-4">
-                            <IoPlayCircleOutline className="w-28 h-28" />
-                        </span>
-                    }
-                    guest={false}
-                />
-            );
+            // setError(
+            //     <GuestComponent
+            //         title="Video does not exist"
+            //         subtitle="There is no video present for given videoId. It may have been moved or deleted."
+            //         icon={
+            //             <span className="w-full h-full flex items-center p-4">
+            //                 <IoPlayCircleOutline className="w-28 h-28" />
+            //             </span>
+            //         }
+            //         guest={false}
+            //     />
+            // );
+            <VideoPlayer />
             console.log(error);
         } finally {
             setLoading(false);

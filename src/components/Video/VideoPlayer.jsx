@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const VideoPlayer = ({ videoFile }) => {
     const userData = useSelector((state) => state.auth.userData);
-    const [isAdPlaying, setIsAdPlaying] = useState(!userData?.premium); // Only show the ad if the user is not premium
+    const [isAdPlaying, setIsAdPlaying] = useState(!userData || !userData?.premium); // Only show the ad if the user is not premium
     const videoRef = useRef(null); // Ref to access the video element
     const [lastCurrentTime, setLastCurrentTime] = useState(0); // Track the last valid time to prevent skipping
 
