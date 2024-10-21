@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
+}
+.backgroundColorBlack{
+   background-color: black;
+   /* color: white; */
+}
+.backgroundColorWhite{
+   background-color: white;
+   color: black;
+   background: white;
+}
+
+/* Styling for yellow progress bar during ad */
+.custom-ad-progress::-webkit-media-controls-timeline,
+.custom-ad-progress::-moz-progress-bar {
+    height: 5px;
+    background-color: yellow;
+}
+
+/* Make sure the progress bar is positioned at the bottom */
+.custom-ad-progress {
+    position: relative;
+    bottom: 0;
+}
