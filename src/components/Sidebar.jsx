@@ -77,8 +77,8 @@ function Sidebar() {
 
     return (
         <div
-            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out  ${
-                isWatchPage ? "w-16" : "w-64"
+            className={`bg-black md:w-16 text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out  ${
+                isWatchPage  ? "w-16" : "w-64"
             }`}
         >
             <ul className="flex-grow px-2 py-2">
