@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import GuestComponent from '../GuestPages/GuestComponent.jsx';
 import { FaRegPlayCircle } from "react-icons/fa";
 import { getChannelVideoViews } from '../../hooks/getChannelStatsDetails/getChannelVideoViews.js';
+import { resetDailyVideoViews } from '../../store/videosStatSlice.js';
 
 const VideoStatContainer = () => {
   const dailyVideoViews = useSelector(state => state.videosStat.dailyVideoViews);
@@ -19,6 +20,10 @@ const VideoStatContainer = () => {
     }
     );
   }, []);
+  useEffect(() => {
+    // Clear dailyVideoViews when login
+    dispatch(resetDailyVideoViews());
+  }, [dispatch]);
 
   const handleStats = (videoContainerId) => {
     navigate(`/user-videos-stats/${videoContainerId}`)

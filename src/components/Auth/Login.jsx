@@ -17,11 +17,6 @@ function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        // Clear dailyVideoViews when login
-        dispatch(resetDailyVideoViews());
-      }, [dispatch]);
-
     const {
         register,
         handleSubmit,
