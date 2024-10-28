@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { setUser } from "../../store/authSlice.js";
@@ -9,12 +9,18 @@ import Input from "../Input";
 import Button from "../Button";
 import { icons } from "../../assets/Icons.jsx";
 import axiosInstance from "../../utils/axios.helper.js";
+import { resetDailyVideoViews } from "../../store/videosStatSlice.js";
 
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        // Clear dailyVideoViews when login
+        dispatch(resetDailyVideoViews());
+      }, [dispatch]);
 
     const {
         register,

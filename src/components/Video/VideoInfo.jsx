@@ -45,16 +45,16 @@ function VideoInfo({ video }) {
         } else {
             try {
                 const response = await axiosInstance.post(
-                    `/likes/toggle/v/${video._id}`
+                    `/likes/toggle/v/${video?._id}`
                 );
                 if (response.data.success) {
                     dispatch(
                         setVideo({
                             ...video,
-                            isLiked: !video.isLiked,
-                            likesCount: video.isLiked
-                                ? video.likesCount - 1
-                                : video.likesCount + 1,
+                            isLiked: !video?.isLiked,
+                            likesCount: video?.isLiked
+                                ? video?.likesCount - 1
+                                : video?.likesCount + 1,
                         })
                     );
                 }
@@ -71,18 +71,18 @@ function VideoInfo({ video }) {
         } else {
             try {
                 const response = await axiosInstance.post(
-                    `/subscriptions/c/${video.owner._id}`
+                    `/subscriptions/c/${video?.owner._id}`
                 );
                 if (response.data.success) {
                     dispatch(
                         setVideo({
                             ...video,
                             owner: {
-                                ...video.owner,
+                                ...video?.owner,
                                 isSubscribed: !video.owner.isSubscribed,
                                 subscriberCount: video.owner.isSubscribed
-                                    ? video.owner.subscriberCount - 1
-                                    : video.owner.subscriberCount + 1,
+                                    ? video?.owner?.subscriberCount - 1
+                                    : video?.owner?.subscriberCount + 1,
                             },
                         })
                     );
@@ -101,10 +101,10 @@ function VideoInfo({ video }) {
     const handleSavePlaylist = async () => {
         try {
             const response = await axiosInstance.get(
-                `/playlist/user/p/${video._id}`
+                `/playlist/user/p/${video?._id}`
             );
             if (response.data.success) {
-                dispatch(setPlaylists(response.data.data));
+                dispatch(setPlaylists(response?.data?.data));
             }
         } catch (error) {
             toast.error("Error while fetching your playlists");
@@ -123,7 +123,7 @@ function VideoInfo({ video }) {
         if (status) {
             try {
                 const response = await axiosInstance.patch(
-                    `/playlist/add/${video._id}/${playlistId}`
+                    `/playlist/add/${video?._id}/${playlistId}`
                 );
                 if (response?.data?.success) {
                     toast.success(response.data.message);
@@ -141,7 +141,7 @@ function VideoInfo({ video }) {
         } else {
             try {
                 const response = await axiosInstance.patch(
-                    `/playlist/remove/${video._id}/${playlistId}`
+                    `/playlist/remove/${video?._id}/${playlistId}`
                 );
                 if (response?.data?.success) {
                     toast.success(response.data.message);
@@ -237,7 +237,7 @@ function VideoInfo({ video }) {
                                         {playlists?.length > 0 ? (
                                             playlists?.map((item) => (
                                                 <li
-                                                    key={item._id}
+                                                    key={item?._id}
                                                     className="mb-2 last:mb-0 text-sm"
                                                 >
                                                     <label
@@ -251,14 +251,14 @@ function VideoInfo({ video }) {
                                                             type="checkbox"
                                                             id={
                                                                 "collection" +
-                                                                item._id
+                                                                item?._id
                                                             }
                                                             defaultChecked={
-                                                                item.isVideoPresent
+                                                                item?.isVideoPresent
                                                             }
                                                             onChange={(e) =>
                                                                 handlePlaylistVideo(
-                                                                    item._id,
+                                                                    item?._id,
                                                                     e.target
                                                                         .checked
                                                                 )
@@ -320,7 +320,7 @@ function VideoInfo({ video }) {
                     <Button
                         onClick={toggleSubscribe}
                         className={`flex h-10 items-center px-2 rounded-full ${
-                            video.owner.isSubscribed
+                            video?.owner?.isSubscribed
                                 ? "hover:bg-pink-700"
                                 : "hover:bg-gray-300"
                         }`}
@@ -347,7 +347,7 @@ function VideoInfo({ video }) {
             </div>
             <div className="mt-4 border border-b-0 border-l-0 border-r-0 py-2 px-1 overflow-hidden flex justify-between">
                 <p className={`${showFullDescription ? "" : "line-clamp-1"}`}>
-                    {video.description ? video.description : "No description"}
+                    {video?.description ? video?.description : "No description"}
                 </p>
                 <button
                     onClick={toggleDescription}

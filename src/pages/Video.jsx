@@ -349,8 +349,8 @@ function Video() {
                     <div className="w-[70%] p-4">
                         {/* Render the VideoPlayer component with ad logic */}
                         <VideoPlayer
-                            key={video._id}
-                            videoFile={video.videoFile}
+                            key={video?._id}
+                            videoFile={video?.videoFile}
                             userData={userData} // Pass userData to check if ads need to be shown
                         />
                         <VideoInfo video={video} />

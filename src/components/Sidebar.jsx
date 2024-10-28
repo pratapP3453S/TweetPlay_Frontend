@@ -77,9 +77,9 @@ function Sidebar() {
 
     return (
         <div
-            className={`bg-blue-600 text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out ${
+            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out ${
                 isWatchPage ? "w-16" : "w-64"
-            } md:w-14`}
+            }`}
         >
             <ul className="flex-grow px-2 py-2">
                 {NavElements.map((item, index) => (
