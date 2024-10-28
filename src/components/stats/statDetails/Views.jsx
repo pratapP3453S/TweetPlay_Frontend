@@ -81,7 +81,7 @@ function Views() {
                                 Go Back
                             </button>
                             <center>
-                                <h2 className='text-lg font-bold'>{`Daily Views On Channel (Last ${dailyUserViews.length} days)`}</h2>
+                                <h2 className='text-lg font-bold'>{`Daily Views On Channel (Last 10 days)`}</h2>
                             </center>
                             <center>
                                 <ResponsiveContainer width="80%" height={400}>
