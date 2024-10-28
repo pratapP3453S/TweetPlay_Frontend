@@ -99,7 +99,7 @@ function Channel() {
                     <div className="mr-auto inline-block">
                         <p className="font-bold text-xl flex items-center">
                             {profile?.fullName}
-                            {userData?.premium && <MdVerified className="ml-1 size-5 text-blue-400" />} 
+                            {profile?.premium && <MdVerified className="ml-1 size-5 text-blue-400" />} 
                         </p>
                         <p className="text-sm text-gray-400">
                             @{profile?.username}
@@ -124,8 +124,8 @@ function Channel() {
                                 <Button
                                     onClick={toggleSubscribe}
                                     className={`flex items-center px-2 rounded-lg ${profile?.isSubscribed
-                                            ? "hover:bg-pink-700"
-                                            : "hover:bg-gray-300"
+                                        ? "hover:bg-pink-700"
+                                        : "hover:bg-gray-300"
                                         }`}
                                     textColor="text-black"
                                     bgColor={

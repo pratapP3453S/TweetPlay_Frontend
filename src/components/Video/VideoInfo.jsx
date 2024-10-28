@@ -301,7 +301,8 @@ function VideoInfo({ video }) {
                         <div>
                             <p className="text-gray-100 text-[0.9rem] flex">
                                 {video?.owner?.fullName}
-                                {userData?.premium && <MdVerified className="ml-1 text-blue-400" style={{marginTop: "3px"}}/>} 
+                                {console.log(video?.owner?.premium)}
+                                {video?.owner?.premium && <MdVerified className="ml-1 text-blue-400" style={{marginTop: "3px"}}/>} 
                             </p>
                             <p className="text-gray-300  text-[0.8rem]">
                                 {formatSubscription(
@@ -319,11 +320,10 @@ function VideoInfo({ video }) {
                     />
                     <Button
                         onClick={toggleSubscribe}
-                        className={`flex h-10 items-center px-2 rounded-full ${
-                            video?.owner?.isSubscribed
+                        className={`flex h-10 items-center px-2 rounded-full ${video?.owner?.isSubscribed
                                 ? "hover:bg-pink-700"
                                 : "hover:bg-gray-300"
-                        }`}
+                            }`}
                         textColor="text-black"
                         bgColor={
                             video?.owner?.isSubscribed
