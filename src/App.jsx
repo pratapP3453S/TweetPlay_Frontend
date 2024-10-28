@@ -7,9 +7,9 @@ import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { healthCheck } from "./hooks/healthCheck";
 import { getCurrentUser } from "./hooks/getCurrentUser";
-import { icons } from "./assets/Icons.jsx";
 import OpenLogo from "./components/OpenLogo";
-import "./index.css"; 
+import { icons } from "./assets/Icons.jsx";
+import "./index.css";
 
 function App() {
     const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function App() {
             <div className="h-screen w-full overflow-y-auto bg-[#121212] text-white">
                 {showLogo ? (
                     <div className="flex flex-col items-center justify-center mt-64">
-                        <span className="fade-in-out">{ <OpenLogo /> }</span> 
+                        <span className="fade-in-out">{<OpenLogo />}</span> {/* Your logo goes here */}
                     </div>
                 ) : (
                     <div className="flex flex-col items-center justify-center mt-64">

@@ -112,7 +112,7 @@
 // export default Videos;
 
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
@@ -120,6 +120,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart } from 'chart.js';
 import { icons } from '../../../assets/Icons';
 import { RiArrowGoBackLine } from "react-icons/ri";
+import { resetDailyVideoViews } from '../../../store/videosStatSlice.js';
 // import {
 //   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 // } from 'recharts';
@@ -132,6 +133,12 @@ const Videos = () => {
   const [loading, setLoading] = useState(true);
   const [filteredVideo, setFilteredVideo] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Clear dailyVideoViews when entering the component
+    dispatch(resetDailyVideoViews());
+  }, [dispatch]);
 
   useEffect(() => {
     if (videoContainerId && dailyVideoViews?.length > 0) {

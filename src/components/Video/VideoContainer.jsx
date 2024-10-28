@@ -81,7 +81,7 @@ function VideoContainer() {
                         }`}
                     >
                         {videos.map((video) => (
-                            <VideoCard key={video._id} video={video} />
+                            <VideoCard key={video?._id} video={video} />
                         ))}
                     </div>
                 </div>

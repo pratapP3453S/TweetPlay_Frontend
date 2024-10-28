@@ -77,13 +77,12 @@ function Sidebar() {
 
     return (
         <div
-            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out  ${
+            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out ${
                 isWatchPage ? "w-16" : "w-64"
             }`}
         >
             <ul className="flex-grow px-2 py-2">
                 {NavElements.map((item, index) => (
-                    
                     <NavLink
                         className={({ isActive }) =>
                             `${isActive ? "text-pink-700" : "text-gray-200"}`
@@ -97,9 +96,7 @@ function Sidebar() {
                             }`}
                         >
                             {item.icon && (
-                                <span
-                                    className={`${isWatchPage ? "" : "mr-2"}`}
-                                >
+                                <span className={`${isWatchPage ? "" : "mr-2"}`}>
                                     {item.icon}
                                 </span>
                             )}
@@ -199,6 +196,8 @@ function Sidebar() {
             </ul>
         </div>
     );
+    
+    
 }
 
 export default Sidebar;

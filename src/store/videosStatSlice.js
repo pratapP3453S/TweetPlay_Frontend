@@ -9,11 +9,14 @@ const videosStatSlice = createSlice({
     initialState,
     reducers: {
         videosStatReducer(state, action){
-            state.dailyVideoViews = action.payload;
+            state.dailyVideoViews = [...state.dailyVideoViews, ...action.payload];
+        },
+        resetDailyVideoViews(state){
+            state.dailyVideoViews = [];
         }
     }
 })
 
-export const { videosStatReducer } = videosStatSlice.actions;
+export const { videosStatReducer, resetDailyVideoViews } = videosStatSlice.actions;
 
 export default videosStatSlice.reducer;
