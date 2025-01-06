@@ -184,9 +184,9 @@ function VideoInfo({ video }) {
             <div className="flex justify-between">
                 <div className="w-[80%]">
                     <h1 className="text-[1.3rem] font-semibold">
-                        {video?.title}
+                        {video.title}
                     </h1>
-                    <p className="text-[0.9rem] text-gray-300">{`${video?.views} views • ${timeDistance}`}</p>
+                    <p className="text-[0.9rem] text-gray-300">{`${video.views} views • ${timeDistance}`}</p>
                 </div>
                 <div className="py-1 flex h-11">
                     <>
@@ -199,8 +199,8 @@ function VideoInfo({ video }) {
                             onClick={toggleVideoLike}
                             className={`px-3 border rounded-lg border-gray-400 flex items-center hover:bg-gray-900`}
                         >
-                            <p className="mr-1">{video?.likesCount}</p>
-                            {video?.isLiked ? (
+                            <p className="mr-1">{video.likesCount}</p>
+                            {video.isLiked ? (
                                 <BiSolidLike className="w-5 h-5" />
                             ) : (
                                 <BiLike className="w-5 h-5" />
