@@ -200,7 +200,7 @@ function VideoInfo({ video }) {
                             className={`px-3 border rounded-lg border-gray-400 flex items-center hover:bg-gray-900`}
                         >
                             <p className="mr-1">{video?.likesCount}</p>
-                            {video.isLiked ? (
+                            {video?.isLiked ? (
                                 <BiSolidLike className="w-5 h-5" />
                             ) : (
                                 <BiLike className="w-5 h-5" />
