@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { GoHome } from "react-icons/go";
@@ -17,6 +17,7 @@ import { unSetUser } from "../store/authSlice";
 import { toast } from "react-toastify";
 
 function Sidebar() {
+    const [isOpen, setIsOpen] = useState(false); // For mobile toggle
     const authStatus = useSelector((state) => state.auth.status);
     const userData = useSelector((state) => state.auth.userData);
     const location = useLocation();
@@ -59,7 +60,6 @@ function Sidebar() {
             route: `/channel/${userData?.username}`,
             icon: <GoDeviceCameraVideo className="w-6 h-6" />,
         },
-
     ];
 
     const handleLogout = async () => {
@@ -76,128 +76,92 @@ function Sidebar() {
     };
 
     return (
-        <div
-            className={`bg-black text-white h-full flex flex-col border border-y-0 border-l-0 transition-all duration-100 ease-in-out ${
-                isWatchPage ? "w-16" : "w-64"
-            }`}
-        >
-            <ul className="flex-grow px-2 py-2">
-                {NavElements.map((item, index) => (
-                    <NavLink
-                        className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
-                        }
-                        to={item.route}
-                        key={index}
-                    >
-                        <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                                isWatchPage ? "justify-center " : " px-5"
-                            }`}
+        <>
+            {/* Mobile Toggle Button */}
+            <button
+                className="fixed top-4 left-4 z-50 text-white sm:hidden"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                ☰
+            </button>
+
+            {/* Sidebar */}
+            <div
+                className={`bg-black text-white h-full fixed top-0 left-0 z-40 transform transition-transform duration-300 ${
+                    isOpen ? "translate-x-0" : "-translate-x-full"
+                } sm:translate-x-0 sm:relative sm:w-64 ${
+                    isWatchPage ? "w-16 sm:w-16" : "w-64"
+                }`}
+            >
+                <ul className="flex-grow px-2 py-2">
+                    {NavElements.map((item, index) => (
+                        <NavLink
+                            className={({ isActive }) =>
+                                `${isActive ? "text-pink-700" : "text-gray-200"}`
+                            }
+                            to={item.route}
+                            key={index}
                         >
-                            {item.icon && (
+                            <li
+                                className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
+                                    isWatchPage ? "justify-center " : " px-5"
+                                }`}
+                            >
+                                {item.icon && (
+                                    <span className={`${isWatchPage ? "" : "mr-2"}`}>
+                                        {item.icon}
+                                    </span>
+                                )}
+                                {!isWatchPage && <div>{item.name}</div>}
+                            </li>
+                        </NavLink>
+                    ))}
+                    {authStatus && !userData?.premium && (
+                        <NavLink
+                            className={({ isActive }) =>
+                                `${isActive ? "text-pink-700" : "text-gray-200"}`
+                            }
+                            to="/admin/go-premium"
+                        >
+                            <li
+                                className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
+                                    isWatchPage ? "justify-center " : " px-4"
+                                }`}
+                            >
                                 <span className={`${isWatchPage ? "" : "mr-2"}`}>
-                                    {item.icon}
+                                    <TbPremiumRights className="w-7 h-7" />
                                 </span>
-                            )}
-                            {!isWatchPage && <div>{item.name}</div>}
-                        </li>
-                    </NavLink>
-                ))}
-                {authStatus && !userData?.premium && (
-                    <NavLink
-                        className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
-                        }
-                        to="/admin/go-premium"
-                    >
+                                {!isWatchPage && "Go Premium"}
+                            </li>
+                        </NavLink>
+                    )}
+                </ul>
+                <ul className="px-2 py-2">
+                    {authStatus && (
                         <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                                isWatchPage ? "justify-center " : " px-4"
-                            }`}
-                        >
-                            <span className={`${isWatchPage ? "" : "mr-2"}`}>
-                                <TbPremiumRights className="w-7 h-7" />
-                            </span>
-                            {!isWatchPage && "Go Premium"}
-                        </li>
-                    </NavLink>
-                )}
-                {authStatus && (
-                    <NavLink
-                        className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
-                        }
-                        to="/admin/dashboard"
-                    >
-                        <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
+                            onClick={handleLogout}
+                            className={`py-2 ml-1 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
                                 isWatchPage ? "justify-center " : " px-5"
                             }`}
                         >
-                            <span className={`${isWatchPage ? "" : "mr-2"}`}>
-                                <FaRegUserCircle className="w-6 h-6" />
+                            <span className={`${isWatchPage ? "ml-1" : "mr-2"}`}>
+                                <GrLogout className="w-6 h-6" />
                             </span>
-                            {!isWatchPage && "Dashboard"}
+                            {!isWatchPage && "Logout"}
                         </li>
-                    </NavLink>
-                )}
-            </ul>
-            <ul className="px-2 py-2">
-                {authStatus && (
-                    <li
-                        onClick={handleLogout}
-                        className={`py-2 ml-1 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                            isWatchPage ? "justify-center " : " px-5"
-                        }`}
-                    >
-                        <span className={`${isWatchPage ? "ml-1" : "mr-2"}`}>
-                            <GrLogout className="w-6 h-6" />
-                        </span>
-                        {!isWatchPage && "Logout"}
-                    </li>
-                )}
-                {authStatus && (
-                    <NavLink
-                        className={({ isActive }) =>
-                            `${isActive ? "text-pink-700" : "text-gray-200"}`
-                        }
-                        to="/settings"
-                    >
-                        <li
-                            className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                                isWatchPage ? "justify-center " : " px-5"
-                            }`}
-                        >
-                            <span className={`${isWatchPage ? "" : "mr-2"}`}>
-                                <FiSettings className="w-6 h-6" />
-                            </span>
-                            {!isWatchPage && "Settings"}
-                        </li>
-                    </NavLink>
-                )}
-                <NavLink
-                    className={({ isActive }) =>
-                        `${isActive ? "text-pink-700" : "text-gray-200"}`
-                    }
-                    to="/support"
-                >
-                    <li
-                        className={`py-2 hover:bg-gray-800 transition-all duration-100 cursor-pointer flex items-center rounded-lg ${
-                            isWatchPage ? "justify-center " : " px-5"
-                        }`}
-                    >
-                        <span className={`${isWatchPage ? "" : "mr-2"}`}>
-                            <GoQuestion className="w-6 h-6" />
-                        </span>
-                        {!isWatchPage && "Support"}
-                    </li>
-                </NavLink>
-            </ul>
-        </div>
+                    )}
+                </ul>
+            </div>
+
+            {/* Backdrop for mobile */}
+            {isOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden"
+                    onClick={() => setIsOpen(false)}
+                ></div>
+            )}
+        </>
     );
-    
-    
 }
 
 export default Sidebar;
