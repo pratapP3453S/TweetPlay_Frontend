@@ -56,7 +56,7 @@ function EditChannelInfo() {
                         </label>
                         <div className="flex rounded-lg border">
                             <p className="flex shrink-0 items-center border-r border-white px-3 align-middle">
-                                streamify.com/
+                                tweetplay.com/
                             </p>
                             <input
                                 type="text"
