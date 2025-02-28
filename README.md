@@ -47,11 +47,11 @@ Live Preview of TweetPlay : https://tweetplay.vercel.app
 ## 📚 How to Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/tweetplay.git
+   git clone https://github.com/pratapP3453S/TweetPlay_Frontend.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd tweetplay
+   cd TweetPlay_Frontend
    ```
 3. Install dependencies:
    ```bash
